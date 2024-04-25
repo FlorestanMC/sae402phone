@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { Searchbar, Title } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import AllAnimaux from "../components/AllAnimaux";
@@ -9,18 +9,24 @@ import AffichType from '../components/AffichType';
 export default function AccueilView(props) {
 
     const [searchQuery, setSearchQuery] = useState('');
+   
+
 
     return (
         <View style={styles.container}>
-        <Searchbar 
+
+
+
+ <Searchbar
         style={styles.searchbar}
         placeholder="Rechercher un animal"
         onChangeText={setSearchQuery}
         value={searchQuery}
-        />
+/>
+
         <AffichType {...props} ></AffichType>
         <Title style={styles.title}>Animaux</Title>
-        <AllAnimaux {...props}></AllAnimaux>
+        <AllAnimaux searchQuery={searchQuery} {...props}></AllAnimaux>
         </View>
         )
 }

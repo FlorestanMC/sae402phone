@@ -73,11 +73,7 @@ export default function AnimalDetail(props) {
                                 left={() => <List.Icon icon="calendar" />}
                                 titleStyle={styles.listItemTitle}
                             />
-                            <List.Item
-                                title={`${animal.LOCALISATION}`}
-                                left={() => <List.Icon icon="map-marker" />}
-                                titleStyle={styles.listItemTitle}
-                            />
+                           
                         </Card.Content>
                     </Card>
                     <View style={styles.details}>
@@ -102,7 +98,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     header: {
-        marginTop: '0%',
+        marginTop: '10%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

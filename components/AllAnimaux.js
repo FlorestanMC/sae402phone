@@ -3,30 +3,44 @@ import { View, Text, ScrollView, StyleSheet, Image } from "react-native";
 import { Card, IconButton, Title, Paragraph } from "react-native-paper";
 
 export default function AffichListAnimaux(props) {
+
+    let url = "https://milhet.alwaysdata.net/sae401/api/animaux"
     
-  const [listeAnimaux, setAnimaux] = useState([]);
+    const searchAnimal = props &&props.searchQuery ? props.searchQuery : null;
+    const [listeAnimaux, setAnimaux] = useState([]);    
+    const [iconStates, setIconStates] = useState([]);
   
-  useEffect(() => {
-    const fetchAnimaux = async () => {
-      try {
-        const response = await fetch(
-          "https://milhet.alwaysdata.net/sae401/api/animaux"
-        );
-        const dataJSON = await response.json();
-        // Créer un tableau d'états pour les icônes de chaque carte, initialisé à 'heart-outline' pour chaque carte
-        const initialIconStates = Array(dataJSON.length).fill('heart-outline');
-        setIconStates(initialIconStates);
-        setAnimaux(dataJSON);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    if (searchAnimal) {
+      url += `?animaux=${searchAnimal}`;
+    }
+    
+    useEffect(() => {
+      getAnimaux();
+      }, 
+      [props.searchQuery]);
 
-    fetchAnimaux();
-  }, []);
+function getAnimaux() {
+    const fetchOptions = { method: "GET" };
+    fetch(url, fetchOptions)
+        .then((response) => {
+            return response.json();
+        })
+        .then((dataJSON) => {   
+          const initialIconStates = Array(dataJSON.length).fill('heart-outline'); 
+            setIconStates(initialIconStates);      
+            setAnimaux(dataJSON);
+            console.log(props)
+            console.log(url)
+            console.log(dataJSON)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 
+        
+}
+  
 
-  const [iconStates, setIconStates] = useState([]);
 
   // Fonction pour gérer le clic sur l'icône d'une card propre
   const handleIconPress = (index) => {
