@@ -29,9 +29,7 @@ function getAnimaux() {
           const initialIconStates = Array(dataJSON.length).fill('heart-outline'); 
             setIconStates(initialIconStates);      
             setAnimaux(dataJSON);
-            console.log(props)
-            console.log(url)
-            console.log(dataJSON)
+            
         })
         .catch((error) => {
             console.log(error);
@@ -108,7 +106,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 200,
+    height: 250,
+    borderRadius: 20,
     resizeMode: "cover",
     marginBottom: 8,
   },

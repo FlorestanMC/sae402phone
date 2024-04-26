@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Searchbar, Title } from 'react-native-paper';
+import { Searchbar, Title, IconButton } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 import AllAnimaux from "../components/AllAnimaux";
 import AffichType from '../components/AffichType';
@@ -16,14 +16,15 @@ export default function AccueilView(props) {
         <View style={styles.container}>
 
 
-
+<View style={styles.head}>
  <Searchbar
         style={styles.searchbar}
         placeholder="Rechercher un animal"
         onChangeText={setSearchQuery}
         value={searchQuery}
-/>
-
+        />
+                
+</View>
         <AffichType {...props} ></AffichType>
         <Title style={styles.title}>Animaux</Title>
         <AllAnimaux searchQuery={searchQuery} {...props}></AllAnimaux>
@@ -39,8 +40,21 @@ const styles = StyleSheet.create({
             alignItems:'center',
             
         },
-        searchbar: {
+        icon: {
+            
+            backgroundColor: 'rgb(238, 232, 244)',
+           marginLeft: 10,
+            borderRadius: 40,
+        },
+        head: {
+            
             marginTop: '15%',
+            alignItems: 'center',
+            display: 'flex',
+            flexDirection: 'row'
+        },
+        searchbar: {
+           
             width: '80%',
         },
         text: {

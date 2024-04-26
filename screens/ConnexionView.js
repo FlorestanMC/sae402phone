@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const storeData = async (data) => {
   try {
-      const accessToken = data.accessToken.substring(3); // Supprime les 3 premiers caractères
+      const accessToken = data.accessToken
       const userId = data.user_id.toString(); // Assurez-vous que user_id est une chaîne de caractères ou un type pouvant être transformé en chaîne de caractères
       await AsyncStorage.setItem('UserToken', accessToken);
       await AsyncStorage.setItem('UserId', userId);
@@ -15,6 +15,7 @@ const storeData = async (data) => {
       console.error('Erreur lors de la sauvegarde des données:', error);
   }
 };
+
 
 export default function ConnexionView(props) {
 
@@ -65,7 +66,6 @@ export default function ConnexionView(props) {
               return response.json();
           })
           .then((dataJSON) => {
-              console.log(dataJSON);
               if (dataJSON.status == 1) {
                   storeData({ accessToken: dataJSON.accessToken, user_id: dataJSON.user_id })
                   console.log(storeData)

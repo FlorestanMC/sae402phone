@@ -47,7 +47,7 @@ export default function AffichType() {
       )}
       {item.type !== 'special' && (
         <Card style={[styles.card, { backgroundColor: colorunselected[index % colorunselected.length] }]} onPress>
-          <Card.Content style={styles.cardContent} >
+          <Card.Content style={styles.cardContent}>
             <Image
               style={styles.cardImage}
               source={{ uri: "https://milhet.alwaysdata.net/sae401/images/" + item.ICON }}
